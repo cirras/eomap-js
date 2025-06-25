@@ -174,7 +174,9 @@ export class GFXLoader {
     try {
       return await this.loadingStrategy.loadRaw(path);
     } catch (e) {
-      console.error("Failed to load %s: %s", path, e);
+      if (e.name !== "AbortError") {
+        console.error("Failed to load %s: %s", path, e);
+      }
     }
 
     let lastSlash = path.lastIndexOf("/");

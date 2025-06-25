@@ -322,22 +322,33 @@ export class Application extends LitElement {
 
     this.pendingGFXLoader = new GFXLoader(loadingStrategy);
 
-    await Promise.allSettled(
-      [3, 4, 5, 6, 7, 22].map(async (fileID) => {
-        try {
-          await this.pendingGFXLoader.loadEGF(fileID);
-        } catch (e) {
-          ++this.gfxErrors;
-          console.error("Failed to load EGF %d: %s", fileID, e);
-        }
-      }),
-    );
+    try {
+      await Promise.allSettled(
+        [3, 4, 5, 6, 7, 22].map(async (fileID) => {
+          try {
+            await this.pendingGFXLoader.loadEGF(fileID);
+          } catch (e) {
+            if (e.name === "AbortError") {
+              throw e;
+            } else {
+              ++this.gfxErrors;
+              console.error("Failed to load EGF %d: %s", fileID, e);
+            }
+          }
+        }),
+      );
 
-    // Preload the cursor
-    await this.pendingGFXLoader.loadRaw("cursor.png");
+      // Preload the cursor
+      await this.pendingGFXLoader.loadRaw("cursor.png");
 
-    this.gfxLoader = this.pendingGFXLoader;
-    this.pendingGFXLoader = null;
+      this.gfxLoader = this.pendingGFXLoader;
+    } catch (e) {
+      if (e.name !== "AbortError") {
+        throw e;
+      }
+    } finally {
+      this.pendingGFXLoader = null;
+    }
   }
 
   showPrompt(promptState) {
