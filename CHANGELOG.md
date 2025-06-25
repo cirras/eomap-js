@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Move and Zoom tools didn't work with touch input.
+- `Open`, `Save`, and `Save As` keyboard shortcuts no longer trigger the default browser behavior
+  when the actions are disabled.
 
 ## [1.2.1] - 2024-01-15
 

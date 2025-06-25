@@ -6,6 +6,7 @@ import {
   CheckboxMenuItemState,
   SubmenuMenuItemState,
   DividerMenuItemState,
+  EventCaptureMode,
 } from "../state/menubar-state";
 import { isElectron, isLinux, isMac, isWindows } from "../util/platform-utils";
 
@@ -202,6 +203,7 @@ export class MenubarController extends EventEmitter {
       new MenuItemState()
         .withLabel("&Open...")
         .withEventType(MenuEvent.Open)
+        .withEventCaptureMode(EventCaptureMode.Always)
         .withKeybinding("CommandOrControl+O")
         .withEnabled(this.canOpenMaps),
       new SubmenuMenuItemState()
@@ -212,11 +214,13 @@ export class MenubarController extends EventEmitter {
       new MenuItemState()
         .withLabel("&Save")
         .withEventType(MenuEvent.Save)
+        .withEventCaptureMode(EventCaptureMode.Always)
         .withKeybinding("CommandOrControl+S")
         .withEnabled(this.canSaveMaps),
       new MenuItemState()
         .withLabel("Save &As...")
         .withEventType(MenuEvent.SaveAs)
+        .withEventCaptureMode(EventCaptureMode.Always)
         .withKeybinding("CommandOrControl+Shift+S")
         .withEnabled(this.canSaveMaps),
       new DividerMenuItemState(),
@@ -247,6 +251,7 @@ export class MenubarController extends EventEmitter {
         new MenuItemState()
           .withLabel("Reload &Graphics")
           .withEventType(MenuEvent.ReloadGraphics)
+          .withEventCaptureMode(EventCaptureMode.Always)
           .withKeybinding("CommandOrControl+R")
           .withEnabled(this.canReloadGraphics),
       );

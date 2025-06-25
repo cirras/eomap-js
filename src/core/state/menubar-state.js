@@ -1,5 +1,10 @@
 import { KeybindingState } from "./keybinding-state";
 
+export const EventCaptureMode = {
+  Always: "always",
+  WhenEnabled: "when-enabled",
+};
+
 export class MenuItemState {
   constructor() {
     this.type = "normal";
@@ -7,6 +12,7 @@ export class MenuItemState {
     this.label = null;
     this.eventType = null;
     this.eventDetail = null;
+    this.eventCaptureMode = EventCaptureMode.WhenEnabled;
     this.keybinding = null;
     this.alternateKeybindings = [];
     this.enabled = true;
@@ -18,6 +24,7 @@ export class MenuItemState {
     copy.label = this.label;
     copy.eventType = this.eventType;
     copy.eventDetail = this.eventDetail;
+    copy.eventCaptureMode = this.eventCaptureMode;
     copy.keybinding = this.keybinding;
     copy.alternateKeybindings = [...this.alternateKeybindings];
     copy.enabled = this.enabled;
@@ -45,6 +52,12 @@ export class MenuItemState {
   withEventDetail(eventDetail) {
     let copy = this.copy();
     copy.eventDetail = eventDetail;
+    return copy;
+  }
+
+  withEventCaptureMode(eventCaptureMode) {
+    let copy = this.copy();
+    copy.eventCaptureMode = eventCaptureMode;
     return copy;
   }
 
@@ -83,6 +96,7 @@ export class CheckboxMenuItemState extends MenuItemState {
     copy.label = this.label;
     copy.eventType = this.eventType;
     copy.eventDetail = this.eventDetail;
+    copy.eventCaptureMode = this.eventCaptureMode;
     copy.keybinding = this.keybinding;
     copy.alternateKeybindings = [...this.alternateKeybindings];
     copy.enabled = this.enabled;
