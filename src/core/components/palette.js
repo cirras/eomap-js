@@ -555,7 +555,7 @@ export class Palette extends PhaserInstance {
   }
 
   createScene() {
-    return new PaletteScene();
+    return new PaletteScene(this.gfxLoader);
   }
 
   onSceneReady(scene) {
@@ -580,6 +580,6 @@ export class Palette extends PhaserInstance {
   }
 
   get componentDataKeys() {
-    return ["gfxLoader", "selectedLayer", "eyedrop"];
+    return ["selectedLayer", "eyedrop"];
   }
 }

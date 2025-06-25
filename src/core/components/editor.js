@@ -10,6 +10,7 @@ import { PhaserInstance } from "./phaser-instance";
 import { EntityState } from "../state/entity-state";
 import { MapPropertiesState } from "../state/map-properties-state";
 import { MapState } from "../state/map-state";
+import { GFXLoader } from "../gfx/load/gfx-loader";
 
 @customElement("eomap-editor")
 export class Editor extends PhaserInstance {
@@ -29,6 +30,9 @@ export class Editor extends PhaserInstance {
 
   @query("eomap-context-menu")
   contextMenu;
+
+  @property({ type: GFXLoader })
+  gfxLoader;
 
   @property({ type: MapState })
   mapState;
@@ -100,7 +104,7 @@ export class Editor extends PhaserInstance {
   }
 
   createScene() {
-    return new EditorScene();
+    return new EditorScene(this.gfxLoader);
   }
 
   onSceneReady(scene) {
@@ -118,7 +122,6 @@ export class Editor extends PhaserInstance {
       "mapState",
       "selectedTool",
       "layerVisibility",
-      "gfxLoader",
       "selectedLayer",
       "selectedDrawID",
       "entityState",

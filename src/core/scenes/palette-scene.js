@@ -36,8 +36,9 @@ class LayerPreload {
 export class PaletteScene extends Phaser.Scene {
   static FILE_BY_LAYER = [3, 4, 5, 6, 6, 7, 3, 22, 5];
 
-  constructor() {
+  constructor(gfxLoader) {
     super("palette");
+    this.gfxLoader = gfxLoader;
     this.textureCache = null;
     this.selectedLayer = null;
     this.layers = [];
@@ -48,12 +49,7 @@ export class PaletteScene extends Phaser.Scene {
   }
 
   create() {
-    this.textureCache = new TextureCache(
-      this,
-      this.data.values.gfxLoader,
-      2048,
-      2048,
-    );
+    this.textureCache = new TextureCache(this, this.gfxLoader, 2048, 2048);
 
     this.layers = this.createLayers();
     this.preloads = this.layers.map((layer) => new LayerPreload(layer));
@@ -119,8 +115,7 @@ export class PaletteScene extends Phaser.Scene {
 
   createResourceLayer(fileID) {
     let layer = this.add.paletteLayer(this);
-    let gfxLoader = this.data.values.gfxLoader;
-    let resourceIDs = gfxLoader.resourceIDs(fileID);
+    let resourceIDs = this.gfxLoader.resourceIDs(fileID);
 
     if (fileID === 3) {
       layer.addEntry(new PaletteLayerBlackTileEntry(this.textureCache));
@@ -131,7 +126,7 @@ export class PaletteScene extends Phaser.Scene {
         continue;
       }
 
-      let info = gfxLoader.resourceInfo(fileID, resourceID);
+      let info = this.gfxLoader.resourceInfo(fileID, resourceID);
       let width = info.width;
       let height = info.height;
 

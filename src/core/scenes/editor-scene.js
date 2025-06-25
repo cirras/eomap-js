@@ -33,8 +33,10 @@ class AxisLock {
 }
 
 export class EditorScene extends Phaser.Scene {
-  constructor() {
+  constructor(gfxLoader) {
     super("editor");
+    this.gfxLoader = gfxLoader;
+
     this.spacebarDown = false;
     this.currentPosDirty = false;
 
@@ -59,7 +61,7 @@ export class EditorScene extends Phaser.Scene {
 
     this.textureCache = new EvictingTextureCache(
       this,
-      this.data.values.gfxLoader,
+      this.gfxLoader,
       1024,
       1024,
     );
