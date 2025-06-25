@@ -320,13 +320,14 @@ export class Application extends LitElement {
       );
     }
 
-    this.pendingGFXLoader = new GFXLoader(loadingStrategy);
+    const newGFXLoader = new GFXLoader(loadingStrategy);
+    this.pendingGFXLoader = newGFXLoader;
 
     try {
       await Promise.allSettled(
         [3, 4, 5, 6, 7, 22].map(async (fileID) => {
           try {
-            await this.pendingGFXLoader.loadEGF(fileID);
+            await newGFXLoader.loadEGF(fileID);
           } catch (e) {
             if (e.name === "AbortError") {
               throw e;
@@ -339,15 +340,19 @@ export class Application extends LitElement {
       );
 
       // Preload the cursor
-      await this.pendingGFXLoader.loadRaw("cursor.png");
+      await newGFXLoader.loadRaw("cursor.png");
 
-      this.gfxLoader = this.pendingGFXLoader;
+      if (newGFXLoader === this.pendingGFXLoader) {
+        this.gfxLoader = newGFXLoader;
+      }
     } catch (e) {
       if (e.name !== "AbortError") {
         throw e;
       }
     } finally {
-      this.pendingGFXLoader = null;
+      if (newGFXLoader === this.pendingGFXLoader) {
+        this.pendingGFXLoader = null;
+      }
     }
   }
 

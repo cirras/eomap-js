@@ -195,10 +195,8 @@ export class GFXLoader {
     this.loadingStrategy.abort();
     this.worker.terminate();
 
-    this.loadingStrategy = null;
-    this.egfs = null;
-    this.worker = null;
-    this.pendingEGFs = null;
-    this.pendingResources = null;
+    this.egfs.clear();
+    this.pendingEGFs.clear();
+    this.pendingResources.clear();
   }
 }
