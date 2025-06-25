@@ -318,6 +318,11 @@ export class TextureCache {
   async loadEntry(entry) {
     let pixels = await entry.loadGFX(this.gfxLoader);
 
+    if (this.scene.textures.game === null) {
+      // The texture manager was destroyed while the entry was loading.
+      return;
+    }
+
     if (
       !this.handleJumboEntry(entry, pixels) &&
       this.findSpace(entry, pixels.width, pixels.height)
