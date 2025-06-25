@@ -29,6 +29,7 @@ export const MenuEvent = {
   DevTools: "toggle-developer-tools",
   About: "about",
 };
+
 export class MenuEventSource {
   constructor() {
     this.listeners = [];
@@ -64,9 +65,13 @@ export class MenubarController extends EventEmitter {
     for (let keybinding of this.keybindingMap.keys()) {
       if (keybinding.triggeredBy(event)) {
         let item = this.keybindingMap.get(keybinding);
-        if (item.enabled) {
+
+        if (item.enabled || item.eventCaptureMode === EventCaptureMode.Always) {
           event.preventDefault();
           event.stopPropagation();
+        }
+
+        if (item.enabled) {
           this.handleMenuEvent(
             new CustomEvent(item.eventType, { detail: item.eventDetail }),
           ).catch((reason) => {
@@ -74,6 +79,7 @@ export class MenubarController extends EventEmitter {
           });
           this.emit("keybinding-handled");
         }
+
         break;
       }
     }
@@ -241,6 +247,7 @@ export class MenubarController extends EventEmitter {
         new MenuItemState()
           .withLabel("Reload &Graphics")
           .withEventType(MenuEvent.ReloadGraphics)
+          .withKeybinding("CommandOrControl+R")
           .withEnabled(this.canReloadGraphics),
       );
     }
