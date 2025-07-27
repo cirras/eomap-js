@@ -414,9 +414,9 @@ export class Palette extends PhaserInstance {
           @pointerup=${this.onArrowPointerUp}
           @pointerout=${this.onArrowPointerUp}
         >
-          <sp-icon slot="icon">${ChevronLeftIcon()}</sp-icon">
+          <sp-icon slot="icon">${ChevronLeftIcon()}</sp-icon>
         </sp-action-button>
-        <div 
+        <div
           tabindex="-1"
           id="layer-buttons"
           @scroll=${this.onLayerButtonsScroll}
@@ -433,7 +433,7 @@ export class Palette extends PhaserInstance {
           @pointerup=${this.onArrowPointerUp}
           @pointerout=${this.onArrowPointerUp}
         >
-          <sp-icon slot="icon">${ChevronRightIcon()}</sp-icon">
+          <sp-icon slot="icon">${ChevronRightIcon()}</sp-icon>
         </sp-action-button>
       </div>
       <div
@@ -441,12 +441,14 @@ export class Palette extends PhaserInstance {
         tabindex="-1"
         @scroll=${this.onPaletteContentScroll}
       >
-        <div id="palette-content" style="width: 100%; height: ${
-          this.contentHeight
-        }px">
-          <div class="palette-viewport" style="height: ${
-            this.viewportHeight
-          }px">
+        <div
+          id="palette-content"
+          style="width: 100%; height: ${this.contentHeight}px"
+        >
+          <div
+            class="palette-viewport"
+            style="height: ${this.viewportHeight}px"
+          >
             ${super.render()}
           </div>
         </div>

@@ -94,7 +94,7 @@ export class FolderTextfield extends Textfield {
   }
 
   renderStateIcons() {
-    return html`<sp-icon class="icon">${FolderOpenIcon()}</sp-icon">`;
+    return html`<sp-icon class="icon">${FolderOpenIcon()}</sp-icon>`;
   }
 
   render() {
@@ -154,9 +154,9 @@ export class Folderfield extends LitElement {
 
   render() {
     return html`
-      <sp-field-label for="textfield" @click=${this.labelClick}>${
-        this.label
-      }</sp-field-label>
+      <sp-field-label for="textfield" @click=${this.labelClick}
+        >${this.label}</sp-field-label
+      >
       <div class="container">
         <eomap-folder-textfield
           id="textfield"
@@ -171,8 +171,8 @@ export class Folderfield extends LitElement {
           .disabled=${!this.selected}
           @click=${this.remove}
         >
-          <sp-icon slot="icon">${CloseIcon()}</sp-icon">
-        </sp-action-button> 
+          <sp-icon slot="icon">${CloseIcon()}</sp-icon>
+        </sp-action-button>
       </div>
     `;
   }

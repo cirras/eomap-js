@@ -76,19 +76,15 @@ export class EntityEditor extends LitElement {
     return html`
       <sp-action-button quiet @click=${onClick}>
         New
-        <sp-icon slot="icon">${AddCircleIcon()}</sp-icon">
+        <sp-icon slot="icon">${AddCircleIcon()}</sp-icon>
       </sp-action-button>
     `;
   }
 
   renderDeleteButton(onClick) {
     return html`
-      <sp-action-button
-        class="delete-button"
-        quiet
-        @click=${onClick}
-      >
-        <sp-icon slot="icon">${CloseIcon()}</sp-icon">
+      <sp-action-button class="delete-button" quiet @click=${onClick}>
+        <sp-icon slot="icon">${CloseIcon()}</sp-icon>
       </sp-action-button>
     `;
   }
