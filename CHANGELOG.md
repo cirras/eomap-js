@@ -11,12 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Application window's minimum size is now 400x270.
 - Better placement of unusually-sized animated walls in the palette.
+- Warp keys are now optional in the entity editor.
+- Warp keys now have a minimum value of 2 in the entity editor. Key 1 is unrepresentable in EMF
+  files due to the way door data is encoded.
 
 ### Fixed
 
 - Move and Zoom tools didn't work with touch input.
 - `Open`, `Save`, and `Save As` keyboard shortcuts no longer trigger the default browser behavior
   when the actions are disabled.
+- Warp keys were incorrectly offset by 1 in the entity editor.
 
 ## [1.2.1] - 2024-01-15
 

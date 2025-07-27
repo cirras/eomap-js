@@ -77,7 +77,7 @@ export class EntityWarp extends LitElement {
         </sp-field-group>
         <sp-field-group>
           <div>
-            <sp-field-label for="level"> Level </sp-field-label>
+            <sp-field-label for="level">Level</sp-field-label>
             <eomap-number-field
               id="level"
               max="${CHAR_MAX - 1}"
@@ -87,6 +87,7 @@ export class EntityWarp extends LitElement {
             <sp-field-label for="key">Key</sp-field-label>
             <eomap-number-field
               id="key"
+              min="2"
               max="${SHORT_MAX - 1}"
               .disabled=${!this.isDoor}
             ></eomap-number-field>
@@ -99,10 +100,6 @@ export class EntityWarp extends LitElement {
               emphasized
               .checked=${this.isDoor}
               @click=${(_event) => {
-                if (isNaN(this.key.value)) {
-                  this.key.value = 0;
-                  this.key.invalid = false;
-                }
                 this.isDoor = !this.isDoor;
               }}
             >
@@ -126,7 +123,7 @@ export class EntityWarp extends LitElement {
     this.y.invalid = false;
     this.level.value = 0;
     this.level.invalid = false;
-    this.key.value = 0;
+    this.key.value = NaN;
     this.key.invalid = false;
     this.isDoor = false;
   }
@@ -137,8 +134,8 @@ export class EntityWarp extends LitElement {
     this.x.value = warp.x;
     this.y.value = warp.y;
     this.level.value = warp.level;
-    this.key.value = Math.max(0, warp.door - 1);
     this.isDoor = warp.door > 0;
+    this.key.value = warp.door > 1 ? warp.door : NaN;
   }
 
   validateRequired(field) {
@@ -150,7 +147,6 @@ export class EntityWarp extends LitElement {
     this.validateRequired(this.x);
     this.validateRequired(this.y);
     this.validateRequired(this.level);
-    this.validateRequired(this.key);
 
     return (
       !this.map.invalid &&
@@ -164,6 +160,12 @@ export class EntityWarp extends LitElement {
   confirm(_event) {
     if (this.validateFields()) {
       this.open = false;
+
+      let door = 0;
+      if (this.isDoor) {
+        door = isNaN(this.key.value) ? 1 : this.key.value;
+      }
+
       this.dispatchEvent(
         new CustomEvent("save", {
           detail: {
@@ -171,7 +173,7 @@ export class EntityWarp extends LitElement {
             x: this.x.value,
             y: this.y.value,
             level: this.level.value,
-            door: this.isDoor ? this.key.value + 1 : 0,
+            door,
           },
         }),
       );

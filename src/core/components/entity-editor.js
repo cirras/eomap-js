@@ -129,7 +129,7 @@ export class EntityEditor extends LitElement {
                   ${warp.level}
                 </td>
                 <td class="spectrum-Table-cell spectrum-Table-cell--divider">
-                  ${Math.max(0, warp.door - 1)}
+                  ${warp.door > 1 ? warp.door : ""}
                 </td>
                 <td class="spectrum-Table-cell spectrum-Table-cell--divider">
                   ${warp.door > 0 ? "Yes" : "No"}
