@@ -20,6 +20,7 @@ module.exports = {
     },
   ],
   snap: {
+    base: "core22",
     publish: {
       provider: "snapStore",
       repo: "eomap-js",
