@@ -8,6 +8,9 @@ contextBridge.exposeInMainWorld("bridge", {
   setMenubarState(state) {
     ipcRenderer.send("menu:set-menubar-state", state);
   },
+  addRecentDocument: (recentDocument) => {
+    ipcRenderer.send("app:add-recent-document", recentDocument);
+  },
   setRecentDocuments: (recentDocuments) => {
     ipcRenderer.send("app:set-recent-documents", recentDocuments);
   },

@@ -127,6 +127,12 @@ function setupIPC() {
     }
   });
 
+  ipcMain.on("app:add-recent-document", (_event, recentDocument) => {
+    if (isWindows() || isMac()) {
+      app.addRecentDocument(recentDocument);
+    }
+  });
+
   ipcMain.on("app:set-recent-documents", (_event, recentDocuments) => {
     if (isWindows() || isMac()) {
       app.clearRecentDocuments();

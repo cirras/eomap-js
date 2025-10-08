@@ -1,7 +1,7 @@
 import { get, set } from "idb-keyval";
 import { asyncFilter } from "../util/array-utils";
 import { PendingPromise } from "../util/pending-promise";
-import { isElectron } from "../util/platform-utils";
+import { isElectron, isWindows } from "../util/platform-utils";
 
 export class RecentFilesController {
   static MAX_RECENT_FILES = 50;
@@ -51,7 +51,13 @@ export class RecentFilesController {
     this.application.recentFiles = this.recentFiles;
   }
 
-  _updateRecentDocuments() {
+  _addNativeRecentDocument(path) {
+    if (isElectron()) {
+      window.bridge.addRecentDocument(path);
+    }
+  }
+
+  _setNativeRecentDocuments() {
     if (isElectron()) {
       window.bridge.setRecentDocuments(
         this.recentFiles.map((handle) => handle.path),
@@ -73,7 +79,6 @@ export class RecentFilesController {
 
     this._broadcastChannel.postMessage(serializedRecentFiles);
     this._updateApplication();
-    this._updateRecentDocuments();
   }
 
   async _doRemoveRecentFile(handle) {
@@ -93,18 +98,26 @@ export class RecentFilesController {
     }
 
     this._saveRecentFiles();
+
+    if (isWindows()) {
+      this._addNativeRecentDocument(handle.path);
+    } else {
+      this._setNativeRecentDocuments();
+    }
   }
 
   async removeRecentFile(handle) {
     await this._load();
     await this._doRemoveRecentFile(handle);
     this._saveRecentFiles();
+    this._setNativeRecentDocuments();
   }
 
   async clearRecentFiles() {
     await this._load();
     this.recentFiles.length = 0;
     this._saveRecentFiles();
+    this._setNativeRecentDocuments();
   }
 
   async hasRecentFile(handle) {

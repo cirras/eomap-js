@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Improved performance when loading maps on the Windows desktop app.
+
 ## [1.3.1] - 2025-08-27
 
 ### Fixed
