@@ -1,5 +1,5 @@
 const { parser, Release } = require("keep-a-changelog");
-const fs = require("fs");
+const fs = require("node:fs");
 const version = require("../package.json").version;
 
 const changelog = parser(fs.readFileSync("CHANGELOG.md", "utf-8"));

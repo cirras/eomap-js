@@ -5,8 +5,8 @@ const configPreload = require("../webpack/electron/preload");
 const configMain = require("../webpack/electron/main");
 const configRenderer = require("../webpack/electron/renderer")();
 const { spawn } = require("cross-spawn");
-const path = require("path");
-const fs = require("fs/promises");
+const path = require("node:path");
+const fs = require("node:fs/promises");
 
 const compilerPreload = webpack(configPreload);
 const compilerMain = webpack(configMain);
