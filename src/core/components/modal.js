@@ -104,7 +104,7 @@ export class Modal extends SpectrumElement {
       this.dialogWrapper,
       (_element) => {
         return (element) => {
-          if (typeof element.focused !== "undefined") {
+          if (element.focused !== undefined) {
             element.focused = false;
           }
         };

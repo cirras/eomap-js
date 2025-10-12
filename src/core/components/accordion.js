@@ -16,7 +16,7 @@ export class Accordion extends Focusable {
 
   get items() {
     return [...(this.defaultNodes || [])].filter(
-      (node) => typeof node.tagName !== "undefined",
+      (node) => node.tagName !== undefined,
     );
   }
 
