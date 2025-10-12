@@ -116,8 +116,6 @@ jobs:
 
     steps:
       - name: Publish Release
-        uses: eregon/publish-release@v1
-        with:
-          release_id: ${{ needs.draft-release.outputs.release_id }}
+        run: gh release edit ${{ needs.draft-release.outputs.release_id }} --draft=false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
