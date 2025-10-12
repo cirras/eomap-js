@@ -94,10 +94,10 @@ export class CommandInvoker extends EventEmitter {
   }
 
   get nextUndoCommand() {
-    return this.undoStack[this.undoStack.length - 1];
+    return this.undoStack.at(-1);
   }
 
   get nextRedoCommand() {
-    return this.redoStack[this.redoStack.length - 1];
+    return this.redoStack.at(-1);
   }
 }

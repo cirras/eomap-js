@@ -36,7 +36,7 @@ if (!app.requestSingleInstanceLock({ argv: process.argv })) {
 }
 
 function getLastActiveWindow() {
-  return windows[windows.length - 1] || null;
+  return windows.at(-1) || null;
 }
 
 function createMenuItemClick(state) {
