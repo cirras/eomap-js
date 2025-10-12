@@ -18,9 +18,9 @@ if (typeof process !== "undefined") {
 } else {
   // Web
   _isElectron = false;
-  _isMacintosh = navigator.userAgent.indexOf("Macintosh") >= 0;
-  _isWindows = navigator.userAgent.indexOf("Windows") >= 0;
-  _isLinux = navigator.userAgent.indexOf("Linux") >= 0;
+  _isMacintosh = navigator.userAgent.includes("Macintosh");
+  _isWindows = navigator.userAgent.includes("Windows");
+  _isLinux = navigator.userAgent.includes("Linux");
 }
 
 export function isMac() {
