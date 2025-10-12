@@ -25,18 +25,18 @@ jobs:
 
       - name: Parse Changelog
         id: changelog
-        uses: coditory/changelog-parser@v1
+        uses: coditory/changelog-parser@4f567c6914ee75eff434b4d946393dfd254f8f98 # v1.0.2
         with:
           version: ${{ steps.get-version.outputs.version-without-v }}
 
       - name: Delete drafts
-        uses: hugo19941994/delete-draft-releases@v1.0.0
+        uses: hugo19941994/delete-draft-releases@d375ad67d25fed7520a8020c3a6561fff5260c1e # v2.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
 
       - name: Create Release Draft
         id: create-release-draft
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@6da8fa9354ddfdc4aeace5fc48d7f679b5214090 # v2.4.1
         with:
           draft: true
           name: eomap-js v${{steps.changelog.outputs.version}}
@@ -71,7 +71,7 @@ jobs:
           npm run build
 
       - name: Prepare code signing for macOS
-        uses: allenevans/set-env@v4.0.0
+        uses: allenevans/set-env@7ccfd08576e7096fe3b98928bd0320d2b9a65728 # v4.0.0
         if: startsWith(matrix.os, 'macos')
         with:
           CSC_LINK: ${{ secrets.mac_certs }}
@@ -105,7 +105,7 @@ jobs:
           npm run dist:web
 
       - name: Release
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8 # v4.7.3
         with:
           folder: dist/web
 
