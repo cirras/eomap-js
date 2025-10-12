@@ -228,9 +228,8 @@ export class MenubarController extends EventEmitter {
         .withLabel("Map &Properties")
         .withEventType(MenuEvent.MapProperties)
         .withEnabled(this.canAccessMapProperties),
+      new DividerMenuItemState(),
     );
-
-    items.push(new DividerMenuItemState());
 
     if (isElectron() && isMac()) {
       items.push(
