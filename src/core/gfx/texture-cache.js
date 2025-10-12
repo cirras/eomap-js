@@ -386,8 +386,8 @@ export class TextureCache {
     this.pending.sort((a, b) => b.refCount - a.refCount);
 
     for (let entry of this.pending) {
-      this.loadEntry(entry).catch((reason) => {
-        console.error(reason);
+      this.loadEntry(entry).catch((error) => {
+        console.error(error);
       });
       ++loaded;
       elapsed = performance.now() - start;

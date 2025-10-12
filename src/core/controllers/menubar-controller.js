@@ -75,8 +75,8 @@ export class MenubarController extends EventEmitter {
         if (item.enabled) {
           this.handleMenuEvent(
             new CustomEvent(item.eventType, { detail: item.eventDetail }),
-          ).catch((reason) => {
-            console.error(reason);
+          ).catch((error) => {
+            console.error(error);
           });
           this.emit("keybinding-handled");
         }
