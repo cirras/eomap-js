@@ -398,7 +398,9 @@ export class TextureCache {
 
     this.pending.splice(0, loaded);
     if (loaded > 0) {
-      console.debug(`Sent ${loaded} entries to the worker in ${elapsed}ms`);
+      console.debug(
+        `Sent ${loaded} entries to the worker (${elapsed.toFixed(2)}ms)`,
+      );
     }
   }
 }
