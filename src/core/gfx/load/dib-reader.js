@@ -582,7 +582,7 @@ export class DIBReader {
         this.readStrategy = new RGBReadStrategy(this);
         break;
       default:
-        throw Error(`Unhandled bit depth: ${this.depth}`);
+        throw new Error(`Unhandled bit depth: ${this.depth}`);
     }
   }
 
@@ -803,7 +803,7 @@ class PalettedReadStrategy extends LineByLineReadStrategy {
           return [byte];
         };
       default:
-        throw Error(`Unhandled bit depth: ${depth}`);
+        throw new Error(`Unhandled bit depth: ${depth}`);
     }
   }
 
