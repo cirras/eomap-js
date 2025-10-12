@@ -449,7 +449,9 @@ export class EvictingTextureCache extends TextureCache {
     };
 
     removeFromTexture(asset.textureFrame);
-    asset.animationFrames.forEach(removeFromTexture);
+    for (let animationFrame of asset.animationFrames) {
+      removeFromTexture(animationFrame);
+    }
 
     if (entry.bin) {
       let page = entry.page;

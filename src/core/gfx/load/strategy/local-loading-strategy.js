@@ -12,9 +12,9 @@ export class LocalLoadingStrategy extends LoadingStrategy {
     this.bundledAssets = new Map();
 
     let context = require.context("../../../assets/bundled", true, /\.png$/);
-    context.keys().forEach((item) => {
+    for (let item of context.keys()) {
       this.bundledAssets.set(item.replace("./", ""), context(item));
-    });
+    }
   }
 
   async loadEGF(filename) {

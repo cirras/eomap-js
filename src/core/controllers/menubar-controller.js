@@ -402,9 +402,9 @@ export class MenubarController extends EventEmitter {
 
   collectKeybindings() {
     this.keybindingMap.clear();
-    this.state.items.forEach((item) =>
-      this.collectKeybindingsFromMenuItem(item),
-    );
+    for (let item of this.state.items) {
+      this.collectKeybindingsFromMenuItem(item);
+    }
   }
 
   collectKeybindingsFromMenuItem(item) {
@@ -418,9 +418,9 @@ export class MenubarController extends EventEmitter {
     }
 
     if (item.type === "submenu" && item.menu) {
-      item.menu.items.forEach((subItem) =>
-        this.collectKeybindingsFromMenuItem(subItem),
-      );
+      for (let subItem of item.menu.items) {
+        this.collectKeybindingsFromMenuItem(subItem);
+      }
     }
   }
 
