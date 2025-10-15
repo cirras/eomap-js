@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2025-10-15
+
 ### Changed
 
 - Improved performance when loading maps on the Windows desktop app.
@@ -178,7 +180,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Desktop app for Windows, Linux, and macOS.
 - Web app available at [https://eomap.dev](https://eomap.dev)
 
-[Unreleased]: https://github.com/cirras/eomap-js/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/cirras/eomap-js/compare/v1.3.2...HEAD
+[1.3.2]: https://github.com/cirras/eomap-js/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/cirras/eomap-js/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/cirras/eomap-js/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/cirras/eomap-js/compare/v1.2.0...v1.2.1

@@ -1,6 +1,6 @@
 {
   "name": "eomap-js",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "productName": "Endless Map Editor",
   "description": "Endless Online Mapper",
   "main": "dist/electron/main.js",
