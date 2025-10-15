@@ -115,6 +115,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Publish Release
         run: gh release edit ${{ needs.draft-release.outputs.release_id }} --draft=false
         env:
